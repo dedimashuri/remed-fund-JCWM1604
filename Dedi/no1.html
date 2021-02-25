@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No 1</title>
+</head>
+<body>
+    <div>
+        <h2>Masukan kata :</h2>
+        <input type="text" placeholder="masukan kata" id="kata"><br><br>
+        <input type="button" value="HITUNG VOKAL" onclick="hitungVokal()" >
+        <input type="button" value="HURUF VOKAL" onclick="hurufVokal()" >
+        <input type="button" value="TANPA VOKAL" onclick="tanpaVokal()" >
+    </div>
+    <tbody>
+        <h2 id="hasil">
+
+        </h2>
+    </tbody>
+</body>
+<script>
+    function  hurufVokal(){
+        let inputKata = document.getElementById('kata').value
+
+        let j = inputKata.toLowerCase().toString().split('')
+        let a = `${j.includes('a') ? j.filter(val => val == 'a')[0] : ''}`
+        let i = `${j.includes('i') ? j.filter(val => val == 'i')[0] : ''}`
+        let u = `${j.includes('u') ? j.filter(val => val == 'u')[0] : ''}`
+        let e = `${j.includes('e') ? j.filter(val => val == 'e')[0] : ''}`
+        let o = `${j.includes('o') ? j.filter(val => val == 'o')[0] : ''}`
+
+        let hasil =`huruf Vokal : ${a}${i}${u}${e}${O}`
+        console.log(hasil)
+        document.getElementById('hasil').innerHTML = hasil
+    }
+</script>
+</html>

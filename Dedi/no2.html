@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>No 2</title>
+    <style>
+        table, th, tr, td{
+            border-collapse: collapse;
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Form Product</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="renderData">
+           
+        </tbody>
+        <tbody>
+            <tr>
+                <td></td>
+                <td><input type="text" placeholder="masukan nama barang" id="name" ></td>
+                <td><input type="text" placeholder="masukan harga barang" id="price" ></td>
+                <td>
+                    <input type="radio" id="radiobutton" value="drink">drink
+                    <input type="radio" id="radiobutton" value="food">food 
+                    <input type="radio" id="radiobutton" value="others">others
+                </td>
+                <td>
+                    <button onclick="onAddClick()" >
+                        ADD
+                    </button>
+                </td>
+
+            </tr>
+            
+        </tbody>
+    </table>
+</body>
+<script>
+    class Users{
+        constructor(_name, _Price, _Category){
+            this.name= _name
+            this.price= _Price
+            this.category=_Category
+        }
+    }
+    
+    var indexedit = -1
+    var indexdelete = -1
+
+    var ListUser = [
+        new User('Coca-Cola', '5000', 'drink' )
+        new User('beng-beng', '4500','food' )
+        new User('fanta', '3500', 'drink' )
+    ]
+    const printData=()=>{
+        var result = ListUser.map((val, index)=>{
+            if(indexEdit===index){
+                return `<tr>
+                            <td>${index+1}</td>
+                            <td><input type="text" value="${val.name}placeholder="masukan nama barang" "id="inputName" ></td>
+                            <td><input type="text" value="${val.price}"placeholder="masukan harga barang" id="inputPrice" ></td
+                            <td>
+                                <input type="radio" id="radiobutton" value=0>drink
+                                <input type="radio" id="radiobutton" value=0>food 
+                                <input type="radio" id="radiobutton" value=0>others
+                            </td>
+                            <td>
+                                <input type="button" onclick="onSaveClick(${index})" value="SAVE">
+                                <input type="button" onclick="onCancelClick(${index})" value="CANCEL">
+                            </td>
+                        </tr>`
+            }
+            return `<tr>
+                            <td>${index+1}</td>
+                            <td>${val.name}</td>
+                            <td>${val.price}</td>
+                            <td>${val.category}</td>
+                            <td>
+                                <input type="button" onclick="onEditClick(${index})" value="Delete">
+                                <input type="button" onclick="onDeleteClick(${index})">
+                            </td>
+                        </tr>`
+        })
+        document.getElementById('renderData').innerHTML=result.join('')
+    }
+   
+   
+    
+  
+    const onEditClick=(index)=>{
+        indexedit=index
+        printData()
+    }
+
+    const onSaveClick=(index)=>{
+        let editName = document.getElementById('editname').value
+        let editPrice = document.getElementById('editprice').value
+        let editCategory;
+        let editCategory0 = document.getElementById('radioButton')[0].value
+        let editCategory1 = document.getElementById('radioButton')[1].value
+        let editCategory2 = document.getElementById('radioButton')[2].value
+
+        if (editCategory0){
+            editCategory= 'drink'
+        }else if (editCategory1){
+            editCategory='food'
+        }else if(editCategory2){
+            editCategory='others'
+        }
+
+        ListUsers[index].name =editName
+        ListUsers[index].price =editPrice
+        ListUsers[index].category =editCategory
+
+        consol.log(editCategory)
+        indexEdit =-1
+        printData()
+    }
+
+   const onCancelClick (index){
+       indexEdit =-1
+       printData()
+       consol.log(index)
+   }
+
+   function onAddClick (){
+       let inputname = document.getElementById('inputName').value
+       let inputprice = document.getElementById('inputPrice').value
+       let inputcatego = document.getElementById('radioButton').value
+
+       form.push(new ListUser(inputname, inputprice, inputcatego),)
+       consol.log(form)
+       printData()
+
+       document.getElementById('inptName').value =''
+       document.getElementById('inptPrice').value =''
+       document.getElementById('radioButton').checked =''
+   }
+   
+    
+</script>
+</html>
